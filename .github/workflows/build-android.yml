@@ -13,8 +13,7 @@ on:
         - production
 
 env:
-  EXPO_USERNAME: ${{ secrets.EXPO_USERNAME }}
-  EXPO_PASSWORD: ${{ secrets.EXPO_PASSWORD }}
+  EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
   EXPO_CLI_VERSION: "~18.0.0"
 
 jobs:
@@ -36,7 +35,6 @@ jobs:
 
       - name: Setup EAS Build
         run: |
-          npx eas-cli login:ci --username "$EXPO_USERNAME" --password "$EXPO_PASSWORD"
           npx eas-cli build --platform android --non-interactive --no-wait --build-type ${{ inputs.build_type || 'preview' }}
 
       - name: Wait for build to complete
